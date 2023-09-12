@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display SVG</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <title>Simplicity Loadout</title>
 
     <style>
-        /* Reset the body's margin and padding */
         body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
 
         #requestButton {
@@ -31,11 +32,11 @@
         }
 
         #requestButton:hover {
-            background-color: #00a0a0;  /* Lighter teal when hovered */
+            background-color: #00a0a0; 
         }
 
         #requestButton:active {
-            background-color: #006060;  /* Darker teal when clicked */
+            background-color: #006060;
         }
 
         @font-face {
@@ -56,8 +57,8 @@
     <div id="main">
         <input id="email" type="email" required=true placeholder="email" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
         <button id="requestButton">Request Info</button>
-        <div id="confirmed" style="visibility: hidden; position: absolute; top: 790px; left: 1015px; height: 46px; font-size: 16.6pt;font-family: 'Arial'">Thanks! We will email you.</div>
-        <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; width: 337px; height: 71px;"></a>
+        <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
+        <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
         <object id="svgObject" type="image/svg+xml" data="drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
     </div>
     <a href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img src="logo.png" style="width:300px" alt="Digital Forces Homepage"></a>
@@ -70,10 +71,8 @@
 
     <script>
         let conf = document.getElementById('confirmed')
-        console.log(conf)
 
         document.getElementById('requestButton').onclick = () => {
-            console.log(window.innerWidth)
             let input = document.getElementById('email')
             email = input.value
             if(email =='')return
@@ -84,7 +83,8 @@
                 conf.innerText = "Thanks! We will email you."
                 conf.style.color = 'black'
                 conf.style.visibility = 'visible'
-                fetch(`https://digitalforces.com/simplicityloadout/requestinfo/${email}`, {mode: 'no-cors'})
+                //fetch(`https://digitalforces.com/simplicityloadout/requestinfo/${email}`, {mode: 'no-cors'}).catch(() => {});
+                fetch(`https://script.google.com/macros/s/AKfycby6W-jWU2W1AnStA8fH3ALiq-3z0w5Zyj4twi4nya0f186NKXE5wGYuxlMPgmr9ashd/exec?email=${email}`)
             }else{
                 conf.innerText = "Invalid email"
                 conf.style.color = 'red'
