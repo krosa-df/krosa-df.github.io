@@ -53,13 +53,12 @@
 </head>
 
 <body>
-    
     <div id="main">
         <input id="email" type="email" required=true placeholder="email" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
         <button id="requestButton">Request Info</button>
         <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
         <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
-        <object id="svgObject" type="image/svg+xml" data="drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
+        <object id="svgObject" type="image/svg+xml" data="https://krosa-df.github.io/drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
     </div>
     <a href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img src="logo.png" style="width:300px" alt="Digital Forces Homepage"></a>
 
@@ -96,29 +95,22 @@
         // digitalforces.com/simplicityloadout/requestinfo/${email} http get
 
         function update() {
-            window.scrollTo(0, window.scrollY);
-            // Get the current window width and height
+            window.scrollTo(0, window.scrollX);
             let windowWidth = window.innerWidth;
             let windowHeight = window.innerHeight;
 
-            // Set a base width and height to compare against. This is arbitrary and can be set to whatever you'd like.
             let baseWidth = 1366;
             let baseHeight = 768;
 
-            // Calculate the scale factor
             let scaleX = Math.min(1,windowWidth/1500)
             let scaleY = scaleX
 
-            // Define translation values. These values can be changed based on your requirements.
             let translateX = -(3840-windowWidth)/2 +960
             let translateY = 0
 
-            // Apply the transform style to scale and translate the body
             let m = document.getElementById('main')
             m.style.transformOrigin = 'top';
             m.style.transform = `scale(${scaleX}, ${scaleY}) translate(${translateX}px, ${translateY}px)`;
-            
-
         }
         window.addEventListener('resize', update);
         update()
