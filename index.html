@@ -97,7 +97,7 @@ a, a img {
                 let data = await response.json();
                 let ip = data.ip
 
-                fetch(`https://script.google.com/macros/s/AKfycbwKDcn0vOmRHpgeD5eVado7iB6PMkFYxB-jNC5dRJr9M5fyrBrg9EnOTs-8MC_aiaE/exec?email=${email}&ip=${ip}`)
+                fetch(`https://script.google.com/macros/s/AKfycbwnheklmq0BmFwn1ILv3VWX2hWbV36N2LEyqpC17Dt72n6UP8NX9uAIlUewVbOzqhg/exec?email=${encodeURIComponent(email)}&ip=${encodeURIComponent(ip)}`)
             }else{
                 conf.innerText = "Invalid email"
                 conf.style.color = 'red'
