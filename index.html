@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <title>Simplicity Loadout</title>
+    <title>Simplicity Loadout!
+    </title>
 
     <style>
         body {
@@ -39,6 +41,17 @@
             background-color: #006060;
         }
 
+        a {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+a, a img {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
         /*
         @font-face {
             font-family: 'Arial';
@@ -55,19 +68,13 @@
 
 <body>
     <div id="main">
-        <input id="email" type="email" required=true placeholder="email" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
+        <input id="email" type="email" required=true placeholder="your email address" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
         <button id="requestButton">Request Info</button>
         <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
         <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
-        <object id="svgObject" type="image/svg+xml" data="https://krosa-df.github.io/drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
+        <object id="svgObject" type="image/svg+xml" data="drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
     </div>
-    <a href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img src="logo.png" style="width:300px" alt="Digital Forces Homepage"></a>
-
-
-
-
-
-
+    <a id="a" href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img id="logo" src="logo.png" style="width:300px;position: absolute" alt="Digital Forces Homepage"></a>
 
     <script>
         let conf = document.getElementById('confirmed')
@@ -83,7 +90,6 @@
                 conf.innerText = "Thanks! We will email you."
                 conf.style.color = 'black'
                 conf.style.visibility = 'visible'
-                //fetch(`https://digitalforces.com/simplicityloadout/requestinfo/${email}`, {mode: 'no-cors'}).catch(() => {});
                 fetch(`https://script.google.com/macros/s/AKfycby6W-jWU2W1AnStA8fH3ALiq-3z0w5Zyj4twi4nya0f186NKXE5wGYuxlMPgmr9ashd/exec?email=${email}`)
             }else{
                 conf.innerText = "Invalid email"
@@ -92,12 +98,19 @@
             }
         }
 
+        function true_width(){
+            const widths = [window.innerWidth];
 
-        // digitalforces.com/simplicityloadout/requestinfo/${email} http get
+            if (window.screen?.width) {
+            widths.push(window.screen?.width);
+            }
+
+            return width = Math.min(...widths);
+        }
 
         function update() {
             window.scrollTo(0, window.scrollX);
-            let windowWidth = window.innerWidth;
+            let windowWidth = true_width();
             let windowHeight = window.innerHeight;
 
             let baseWidth = 1366;
@@ -112,6 +125,13 @@
             let m = document.getElementById('main')
             m.style.transformOrigin = 'top';
             m.style.transform = `scale(${scaleX}, ${scaleY}) translate(${translateX}px, ${translateY}px)`;
+            let s = Math.min(300, windowWidth/2)/300
+            document.getElementById("logo").style.width = `${s * 300}px`
+            document.getElementById("a").style.height = document.getElementById("logo").height + 'px'
+            // console.log(document.getElementById("logo").height + 'px')
+            document.getElementById("a").style.top = `${20 * s}px`
+            document.getElementById("a").style.left = `${20 * s}px`
+            
         }
         window.addEventListener('resize', update);
         update()
