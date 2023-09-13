@@ -72,7 +72,7 @@ a, a img {
         <button id="requestButton">Request Info</button>
         <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
         <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
-        <object id="svgObject" type="image/svg+xml" data="drawing.svg" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
+        <object id="svgObject" type="image/svg+xml" data="https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
     </div>
     <a id="a" href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img id="logo" src="logo.png" style="width:300px;position: absolute" alt="Digital Forces Homepage"></a>
 
@@ -97,7 +97,7 @@ a, a img {
                 let data = await response.json();
                 let ip = data.ip
 
-                fetch(`https://script.google.com/macros/s/AKfycbyTcMn2fi1pBFupWx7EC4gndYmxfgLnITszpUaczjVzwFRWFSZo8PaAs8WuGqSYqihz/exec?email=${email}&ip=${ip}&time=${Date.now()}`)
+                fetch(`https://script.google.com/macros/s/AKfycbwKDcn0vOmRHpgeD5eVado7iB6PMkFYxB-jNC5dRJr9M5fyrBrg9EnOTs-8MC_aiaE/exec?email=${email}&ip=${ip}`)
             }else{
                 conf.innerText = "Invalid email"
                 conf.style.color = 'red'
