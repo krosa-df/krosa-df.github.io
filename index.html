@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <title>Simplicity Loadout!
+    <title>Simplicity Loadout
     </title>
 
     <style>
@@ -68,7 +68,7 @@ a, a img {
 
 <body>
     <div id="main">
-        <input id="email" type="email" required=true placeholder="your email address" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
+        <input id="email" type="email" required=true placeholder="Please enter your email" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
         <button id="requestButton">Request Info</button>
         <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
         <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
@@ -76,13 +76,15 @@ a, a img {
     </div>
     <a id="a" href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img id="logo" src="logo.png" style="width:300px;position: absolute" alt="Digital Forces Homepage"></a>
 
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
     <script>
         let conf = document.getElementById('confirmed')
 
-        document.getElementById('requestButton').onclick = () => {
+        document.getElementById('requestButton').onclick = async function() {
             let input = document.getElementById('email')
             email = input.value
-            if(email =='')return
+            if(email =='') return
 
             let b = typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
             
@@ -90,7 +92,12 @@ a, a img {
                 conf.innerText = "Thanks! We will email you."
                 conf.style.color = 'black'
                 conf.style.visibility = 'visible'
-                fetch(`https://script.google.com/macros/s/AKfycby6W-jWU2W1AnStA8fH3ALiq-3z0w5Zyj4twi4nya0f186NKXE5wGYuxlMPgmr9ashd/exec?email=${email}`)
+    
+                let response = await fetch('https://api.ipify.org?format=json');
+                let data = await response.json();
+                let ip = data.ip
+
+                fetch(`https://script.google.com/macros/s/AKfycbyTcMn2fi1pBFupWx7EC4gndYmxfgLnITszpUaczjVzwFRWFSZo8PaAs8WuGqSYqihz/exec?email=${email}&ip=${ip}&time=${Date.now()}`)
             }else{
                 conf.innerText = "Invalid email"
                 conf.style.color = 'red'
