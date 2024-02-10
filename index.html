@@ -61,24 +61,45 @@ a, a img {
         @font-face {
             font-family: 'OpenSansBold';
             src: url('OpenSans-Bold.ttf') format('truetype');
-        }*/
+        }
+        https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media
+        */
 
     </style>
 </head>
 
 <body>
     <div id="main">
+        <div id="form">
         <input id="email" type="email" required=true placeholder="Please enter your email" style="position: absolute; top: 705px; left: 980px; width: 249px; height: 46px; font-size: 16.6pt; border: 2px solid black; border-radius: 6px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); font-family: 'Arial'; padding-left: 8px; color: black;">
         <button id="requestButton">Request Info</button>
         <div id="confirmed" style="visibility: hidden; position: absolute; top: 780px; left: 985px; height: 46px; font-size: 16.6pt; font-family: 'Arial'; width:500px">Thanks! We will email you.</div>
+        </div>
         <a href="https://www.digitalforces.com/" style="display: block; position: absolute; top: 0px; left: 764px; height: 71px;"></a>
-        <object id="svgObject" type="image/svg+xml" data="https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
+        <object id="svgObject" type="image/svg+xml" data="" style="z-index:-1; position:absolute; left:-960px">Your browser does not support SVG</object>
     </div>
     <a id="a" href="https://www.digitalforces.com/" style="position: absolute; top:20px; left:20px"><img id="logo" src="logo.png" style="width:300px;position: absolute" alt="Digital Forces Homepage"></a>
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <script>
+        let isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        document.addEventListener("DOMContentLoaded", function() {
+            var svgObject = document.getElementById('svgObject');
+            
+            var isNarrowScreen = window.innerWidth < 768; // Example breakpoint for mobile devices
+            // Using matchMedia to check for a max-width of 768px
+
+            if (isMobileUserAgent || isNarrowScreen) {
+                // Mobile device detected
+                svgObject.data = "drawing_mobile.svg";
+                document.getElementById('form').style = "transform: scale(2, 2) translate(-798px, 250px); transform-origin: top left;"
+            } else {
+                // Desktop or non-mobile device assumed
+                svgObject.data = "drawing.svg";
+            }
+        })
+
         let conf = document.getElementById('confirmed')
 
         document.getElementById('requestButton').onclick = async function() {
@@ -140,7 +161,9 @@ a, a img {
             document.getElementById("a").style.left = `${20 * s}px`
             
         }
-        window.addEventListener('resize', update);
+        if(!isMobileUserAgent){
+            window.addEventListener('resize', update);
+        }
         update()
     </script>
 </body>
