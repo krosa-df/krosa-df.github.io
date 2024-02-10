@@ -62,7 +62,7 @@ a, a img {
             font-family: 'OpenSansBold';
             src: url('OpenSans-Bold.ttf') format('truetype');
         }
-        https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media
+        
         */
 
     </style>
@@ -92,11 +92,11 @@ a, a img {
 
             if (isMobileUserAgent || isNarrowScreen) {
                 // Mobile device detected
-                svgObject.data = "drawing_mobile.svg";
+                svgObject.data = "https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media/drawing_mobile.svg";
                 document.getElementById('form').style = "transform: scale(2, 2) translate(-798px, 250px); transform-origin: top left;"
             } else {
                 // Desktop or non-mobile device assumed
-                svgObject.data = "drawing.svg";
+                svgObject.data = "https://firebasestorage.googleapis.com/v0/b/sllp2-1188d.appspot.com/o/drawing.svg?alt=media";
             }
         })
 
